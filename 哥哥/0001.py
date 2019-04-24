@@ -21,6 +21,7 @@ class Solution(object):
     :rtype: List[int]
     """
     
+    # 方法1 利用两层循环进行暴力破解，时间复杂度最大
     def twoSum1(self, nums, target):
         for i in range(0,len(nums)-1):
             for j in range(i+1,len(nums)):
@@ -29,6 +30,8 @@ class Solution(object):
                 
         return []
     
+    # 方法2 利用dict()建立哈希查找表，将没有被选中的nums元素加入dic字典中，
+    #       后续可直接从dic中查找对应元素，降低循环查找时间，但增加空间复杂度，以空间换时间
     def twoSum2(self, nums, target):
         dic = dict()
         for index, value in enumerate(nums):
@@ -39,10 +42,13 @@ class Solution(object):
 
         return []
 
+# 测试用例
 nums = [1,2,3,6,9]
-target = 5
+target1 = 5
+target2 = 9
+# 测试结果
 slu = Solution()
-result = slu.twoSum2(nums, target)
-print(result)
-
-
+result1 = slu.twoSum1(nums, target1)
+result2 = slu.twoSum1(nums, target2)
+print(result1)
+print(result2)
