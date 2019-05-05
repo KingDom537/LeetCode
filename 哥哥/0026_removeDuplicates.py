@@ -21,7 +21,7 @@ class Solution(object):
     def removeDuplicates1(self, nums):
         i = 0
         while i < len(nums) - 1:
-            if(nums[i] == nums[i+1]):
+            if nums[i] == nums[i+1]:
                 del nums[i]
             else:
                 i += 1
