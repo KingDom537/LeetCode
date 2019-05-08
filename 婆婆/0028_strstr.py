@@ -7,7 +7,7 @@ Created on Mon May  6 21:13:09 2019
 #approach 1: use python's function directly
 class Solution(object):
     def strStr(haystack, needle):
-        if needle == "":
+        if needle == "":   # if not needle
             return 0
         else:
             return haystack.find(needle)
@@ -16,29 +16,22 @@ class Solution(object):
 #approach2
 class Solution1(object):
     def strStr(haystack, needle):
-        if needle == "":
+        if not needle:
             return 0
-        else:  #needle首字母是否在haystack中？记录首字母位置
-            sign = len(haystack)+1
-            for i in range(len(haystack)):
-                if haystack[i] == needle[0]:
-                    sign = i
+        else:
+            hlen = len(haystack)
+            nlen = len(needle)
+            sign = 0
+            # 将needle视为一个整体，在haystack上滑动比对
+            for i in range(hlen-nlen+1):
+                if haystack[i:i+nlen] == needle:
+                    sign  = 1  # retrun i
                     break
-            if sign == len(haystack)+1:
+            if sign == 1:  # return -1
+                return i
+            else: 
                 return -1
-            else:
-                n = 0
-                stop = 0
-                while n < len(needle):
-                    if needle[:n+1] != haystack[sign:sign+1]:
-                        stop =1
-                        break
-                    if stop == 1:
-                        return -1
-                    else:
-                        n += 1
-                if stop == 0:
-                    return sign
+                
                         
                     
         
